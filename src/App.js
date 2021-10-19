@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import Constellation from "./Constellation/Constellation";
+import { useState } from 'react';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and sffffffdfghgggdfghave to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Constellation
+      // key={count}
+      width={window.innerWidth}
+      height={window.innerHeight}
+      className="constellation"
+
+      starsColor="rgba(255, 255, 255, 1)"
+      starsWidth={1.5}
+      starsCount={140}
+      starsVelocity={0.45}
+      starsVelocityChaos={3e-3}
+
+      lineColor="rgba(255, 255, 255, .8)"
+      lineWidth={0.3}
+      lineMaxDistance={150}
+      lineCursorRadius={100}
+    />
   );
 }
 
