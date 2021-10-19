@@ -47,7 +47,7 @@ function Constellation(props) {
       for (; i < starsCount; i++) {
         starList.push(createStar());
       }
-      console.log("starList", starList)
+      // console.log("starList", starList)
 
       setStars(starList);
     }
