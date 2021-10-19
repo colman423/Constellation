@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 
 
 export default function useAnimationFrame(callback, depency) {
@@ -8,7 +8,7 @@ export default function useAnimationFrame(callback, depency) {
   const previousTimeRef = useRef();
 
   const animate = time => {
-    if (previousTimeRef.current != undefined) {
+    if (previousTimeRef.current !== undefined) {
       const deltaTime = time - previousTimeRef.current;
       callback(deltaTime)
     }

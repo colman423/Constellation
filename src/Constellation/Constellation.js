@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import useAnimationFrame from "./useAnimationFrame";
 
 
@@ -74,12 +74,12 @@ function Constellation(props) {
     }
     // .on('resize', this.handlers.window.resize.bind(this));
 
-  }, [])
+  }, [height, initStars, lineColor, lineWidth, starsColor, starsCount, starsVelocity, width])
 
 
   const drawStars = useCallback((context) => {
     // console.log("drawStars", stars.length)
-    stars.map(star => {
+    stars.forEach(star => {
 
       // console.log("star", star)
       context.beginPath();
@@ -87,7 +87,7 @@ function Constellation(props) {
       context.arc(star.x, star.y, starsWidth, 0, Math.PI * 2, false);
       context.fill();
     });
-  }, [stars])
+  }, [stars, starsWidth])
 
   const drawLines = useCallback(context => {
     // console.log("drawLines", stars.length);
@@ -116,10 +116,10 @@ function Constellation(props) {
         }
       }
     }
-  }, [stars, mousePosition])
+  }, [stars, mousePosition, starsCount, lineMaxDistance, lineCursorRadius])
 
   const animateStars = useCallback(() => {
-    stars.map(star => {
+    stars.forEach(star => {
       if (star.y < 0 || star.y > height || Math.random() < starsVelocityChaos) {
         star.velY = - star.velY;
       }
@@ -130,10 +130,10 @@ function Constellation(props) {
       star.x += star.velX;
       star.y += star.velY;
     });
-  }, [stars])
+  }, [stars, height, starsVelocityChaos, width])
 
 
-  useAnimationFrame(deltaTime => {
+  useAnimationFrame(() => {
     const canvas = canvasRef.current;
     if(!canvas) return;
     const context = canvas.getContext('2d')
